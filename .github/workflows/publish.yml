@@ -1,0 +1,43 @@
+name: Publish
+
+
+
+
+
+on: push
+
+
+
+
+
+jobs:
+
+  Publishing:
+    name: Publish
+    runs-on: ubuntu-18.04
+
+    steps:
+
+      - uses: actions/checkout@v1
+
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+          # registry-url: https://registry.npmjs.org/
+
+      - run: npm install
+        env:
+          ADBLOCK: true
+          DISABLE_OPENCOLLECTIVE: true
+          HUSKY_SKIP_INSTALL: true
+
+      - name: Build china-list
+        run: sh ci.sh ./ gen_china_list
+
+      - run: node -p 'require("./lib/china-list").has("oscdn.apple.com")'
+      - run: node -p 'require("./lib/china-list").has("oscdn.apple.org")'
+
+      - run: npm publish --dry-run --tag=next
+        # env:
+        #   NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+
