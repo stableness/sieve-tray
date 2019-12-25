@@ -1,0 +1,13 @@
+{
+  "name": "sieve-tray",
+  "version": "0.1.0",
+  "license": "MIT",
+  "sideEffects": false,
+  "files": [
+    "lib/",
+    "json/"
+  ],
+  "dependencies": {
+    "bloom-filters": "^0.8.0"
+  }
+}
