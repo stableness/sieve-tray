@@ -8,6 +8,6 @@
     "json/"
   ],
   "dependencies": {
-    "bloom-filters": "^0.8.0"
+    "bloom-filters": "0.8.0"
   }
 }
