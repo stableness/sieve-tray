@@ -4,7 +4,10 @@ name: Publish
 
 
 
-on: push
+on:
+  push:
+    tags:
+      - vt/*
 
 
 
@@ -23,7 +26,7 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 12.x
-          # registry-url: https://registry.npmjs.org/
+          registry-url: https://registry.npmjs.org/
 
       - run: npm install
         env:
@@ -34,10 +37,7 @@ jobs:
       - name: Build china-list
         run: sh ci.sh ./ gen_china_list
 
-      - run: node -p 'require("./lib/china-list").has("oscdn.apple.com")'
-      - run: node -p 'require("./lib/china-list").has("oscdn.apple.org")'
-
-      - run: npm publish --dry-run --tag=next
-        # env:
-        #   NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+      - run: npm publish --tag=next
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
 
