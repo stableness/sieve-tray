@@ -1,5 +1,6 @@
-const { createReadStream } = require('fs');
 const { createInterface } = require('readline');
+
+const { getDomain } = require('tldts');
 
 const { BloomFilter } = require('bloom-filters');
 
@@ -7,23 +8,22 @@ const { BloomFilter } = require('bloom-filters');
 
 
 
-const [ lines, file ] = process.argv.slice(2);
-
-
-
-const filter = BloomFilter.create(parseInt(lines));
-
-
+const store = new Set();
 
 const table = createInterface({
-    input: createReadStream(file),
+    input: process.stdin,
+    terminal: false,
 });
 
 table
 
-    .on('line', domain => filter.add(domain))
+    .on('line', line => {
+        store.add(getDomain(line || '') || line);
+    })
 
     .once('close', () => {
+
+        const filter = BloomFilter.from(Array.from(store), 0.01);
 
         const _errorRate = filter._nbHashes;
         const _capacity = filter.size;

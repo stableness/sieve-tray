@@ -18,7 +18,7 @@ gen_china_list()
     awk -F '/' 'NF {print $2}' $OUTPUT.raw | sort -b -f | uniq -i > $OUTPUT
 
     mkdir -p json
-    wc -l $OUTPUT | xargs node gen.js > json/china-list.json
+    cat $OUTPUT | node gen.js > json/china-list.json
 
 }
 
