@@ -13,7 +13,7 @@ gen_china_list()
     echo '' > $OUTPUT.raw
     curl -sSL $BASE/apple.china.conf >> $OUTPUT.raw
     curl -sSL $BASE/google.china.conf >> $OUTPUT.raw
-    # curl -sSL $BASE/accelerated-domains.china.conf >> $OUTPUT.raw
+    curl -sSL $BASE/accelerated-domains.china.conf >> $OUTPUT.raw
 
     awk -F '/' 'NF {print $2}' $OUTPUT.raw | sort -b -f | uniq -i > $OUTPUT
 
