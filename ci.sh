@@ -10,15 +10,13 @@ gen_china_list()
     OUTPUT=output.txt
     BASE=https://cdn.jsdelivr.net/gh/felixonmars/dnsmasq-china-list
 
-    echo '' > $OUTPUT.raw
-    curl -sSL $BASE/apple.china.conf >> $OUTPUT.raw
-    curl -sSL $BASE/google.china.conf >> $OUTPUT.raw
-    curl -sSL $BASE/accelerated-domains.china.conf >> $OUTPUT.raw
-
-    awk -F '/' 'NF {print $2}' $OUTPUT.raw | sort -b -f | uniq -i > $OUTPUT
+    echo '' > $OUTPUT
+    curl -sSL $BASE/apple.china.conf >> $OUTPUT
+    curl -sSL $BASE/google.china.conf >> $OUTPUT
+    curl -sSL $BASE/accelerated-domains.china.conf >> $OUTPUT
 
     mkdir -p json
-    cat $OUTPUT | node gen.js > json/china-list.json
+    awk -F '/' 'NF {print $2}' $OUTPUT | sort -b -f | uniq -i | node gen.js > json/china-list.json
 
 }
 
