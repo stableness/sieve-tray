@@ -6,7 +6,7 @@ const { BloomFilter } = require('bloomxx-fork');
 
 
 
-
+const wrap = process.env.DOMAIN ? getDomain : v => v;
 
 const store = new Set();
 
@@ -18,7 +18,7 @@ const table = createInterface({
 table
 
     .on('line', line => {
-        store.add(getDomain(line || '') || line);
+        store.add(wrap(line || '') || line);
     })
 
     .once('close', () => {
