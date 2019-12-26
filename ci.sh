@@ -15,8 +15,8 @@ gen_china_list()
     # curl -sSL $BASE/google.china.conf >> $OUTPUT
     curl -sSL $BASE/accelerated-domains.china.conf >> $OUTPUT
 
-    mkdir -p json
-    awk -F '/' 'NF {print $2}' $OUTPUT | node gen.js > json/china-list.bin
+    mkdir -p dump
+    awk -F '/' 'NF {print $2}' $OUTPUT | node gen.js > dump/china-list.bin
 
 }
 

@@ -5,7 +5,7 @@
   "sideEffects": false,
   "files": [
     "lib/",
-    "json/"
+    "dump/"
   ],
   "dependencies": {
     "bloomxx-fork": "github:imcotton/xx-bloom#fork",

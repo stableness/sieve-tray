@@ -6,6 +6,7 @@
 /out-tsc
 /output.*
 /json
+/dump
 
 # dependencies
 /node_modules
