@@ -18,7 +18,8 @@ const table = createInterface({
 table
 
     .on('line', line => {
-        store.add(wrap(line || '') || line);
+        line = (line || '').trim();
+        store.add(wrap(line) || line);
     })
 
     .once('close', () => {
