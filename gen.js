@@ -2,7 +2,7 @@ const { createInterface } = require('readline');
 
 const { getDomain } = require('tldts');
 
-const { BloomFilter } = require('bloom-filters');
+const { BloomFilter } = require('bloomxx-fork');
 
 
 
@@ -23,17 +23,11 @@ table
 
     .once('close', () => {
 
-        const filter = BloomFilter.from(Array.from(store), 0.01);
+        const filter = BloomFilter.createOptimal(store.size, 0.01);
 
-        const _errorRate = filter._nbHashes;
-        const _capacity = filter.size;
+        filter.add(Array.from(store));
 
-        const dump = filter.saveAsJSON();
-
-        // https://github.com/Callidon/bloom-filters/issues/11
-        Object.assign(dump, { _capacity, _errorRate });
-
-        process.stdout.write(JSON.stringify(dump), 'utf8');
+        process.stdout.write(filter.toBuffer());
 
     })
 
