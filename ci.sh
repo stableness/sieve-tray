@@ -12,7 +12,7 @@ gen_china_list()
 
     echo '' > $OUTPUT
     curl -sSL $BASE/apple.china.conf >> $OUTPUT
-    curl -sSL $BASE/google.china.conf >> $OUTPUT
+    # curl -sSL $BASE/google.china.conf >> $OUTPUT
     curl -sSL $BASE/accelerated-domains.china.conf >> $OUTPUT
 
     mkdir -p json
