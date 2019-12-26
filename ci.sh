@@ -8,6 +8,7 @@ gen_china_list()
 {
 
     OUTPUT=output.txt
+    DUMP=dump
     BASE=https://cdn.jsdelivr.net/gh/felixonmars/dnsmasq-china-list
 
     echo '' > $OUTPUT
@@ -15,8 +16,8 @@ gen_china_list()
     # curl -sSL $BASE/google.china.conf >> $OUTPUT
     curl -sSL $BASE/accelerated-domains.china.conf >> $OUTPUT
 
-    mkdir -p dump
-    awk -F '/' 'NF {print $2}' $OUTPUT | node gen.js > dump/china-list.bin
+    mkdir -p $DUMP
+    awk -F '/' 'NF {print $2}' $OUTPUT | node gen.js > $DUMP/china-list.bin
 
 }
 
