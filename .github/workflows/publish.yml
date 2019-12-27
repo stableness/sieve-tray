@@ -37,6 +37,9 @@ jobs:
       - name: Build china-list
         run: sh ci.sh ./ gen_china_list
 
+      - name: Build block-list
+        run: sh ci.sh ./ gen_block_list
+
       - run: npm publish --tag=next
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
