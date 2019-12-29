@@ -28,10 +28,10 @@ gen_block_list()
 
     OUTPUT=output.txt
     DUMP=dump
+    URL=https://cdn.jsdelivr.net/gh/StevenBlack/hosts/hosts
 
     echo '' > $OUTPUT
-    URL=https://cdn.jsdelivr.net/gh/StevenBlack/hosts/hosts
-    curl -sL $URL | grep "^0.0.0.0" | awk 'NF {print $2}' | grep -v "^0.0.0.0" >> $OUTPUT
+    curl -sSL $URL | grep "^0.0.0.0" | awk 'NF {print $2}' | grep -v "^0.0.0.0" >> $OUTPUT
 
     mkdir -p $DUMP
     cat $OUTPUT | node gen.js > $DUMP/block-list.bin
