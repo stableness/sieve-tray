@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const [ lib, domain ] = process.argv.slice(2);
 
 
