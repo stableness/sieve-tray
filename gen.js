@@ -2,7 +2,7 @@ const { createInterface } = require('readline');
 
 const { getDomain } = require('tldts');
 
-const { BloomFilter } = require('bloomxx-fork');
+const { BloomFilter } = require('bloomxx');
 
 
 
