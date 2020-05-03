@@ -10,7 +10,7 @@
   ],
   "bin": "bin/cli.js",
   "dependencies": {
-    "bloomxx-fork": "github:imcotton/xx-bloom#fork",
+    "bloomxx-fork": "github:stableness/xx-bloom",
     "tldts": "^5.6.2"
   }
 }
