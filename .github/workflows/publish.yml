@@ -44,5 +44,5 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
 
-      - run: curl -sLo /dev/null https://npm.taobao.org/sync/$(jq -r '.name' package.json) &
+      - run: curl -X PUT -sLo /dev/null https://npm.taobao.org/sync/$(jq -r '.name' package.json)?sync_upstream=true &
 
