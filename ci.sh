@@ -19,6 +19,8 @@ gen_china_list()
     mkdir -p $DUMP
     awk -F '/' 'NF {print $2}' $OUTPUT | DOMAIN=1 node gen.js > $DUMP/china-list.bin
 
+    curl -sSL https://cdn.jsdelivr.net/gh/Hackl0us/GeoIP2-CN@release/Country.mmdb > $DUMP/china-ip.mmdb
+
 }
 
 
